@@ -12,6 +12,14 @@ class Post(models.Model):
     content = models.TextField()
     picture = models.FileField(blank=True , null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)
+
+    def deleteds(self):
+        """Mark the record as deleted instead of deleting it""" 
+
+        self.is_deleted = True
+        self.save()
+
 
     def __str__(self):
         return self.title

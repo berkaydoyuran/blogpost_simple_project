@@ -9,7 +9,7 @@ from slugify import slugify
 
 
 def home_view(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(is_deleted= False)
     context = dict(
         posts = posts
     )
@@ -19,7 +19,7 @@ def home_view(request):
 @login_required(login_url="/user/login")
 def myposts_view(request):
     posts = Post.objects.all()
-    posts = Post.objects.filter(user= request.user)
+    posts = Post.objects.filter(is_deleted= False, user= request.user)
 
     context = dict(
         posts =posts
@@ -70,3 +70,16 @@ def post_duzenle(request, id):
     )
 
     return render(request, 'post/post_update.html', context)
+
+@login_required(login_url="/user/login")
+def silme(request,  id):
+    posts = get_object_or_404(Post, is_deleted=False ,id=id)
+
+    posts.deleteds()
+
+    context = dict(
+        posts = posts
+    )
+    
+    
+    return redirect('/')
