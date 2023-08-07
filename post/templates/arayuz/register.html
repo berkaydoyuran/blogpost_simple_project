@@ -1,0 +1,23 @@
+{% extends 'base/main.html' %}
+
+{% block container %}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Kayıt Ol</h3>
+        <hr>
+        <form method = "post">
+            {% csrf_token %}
+            
+            {{form.as_p}}
+            <br>
+            <button type = "submit" class = "btn btn-danger">Kayit Ol</button>
+        </form>
+        <hr>
+        <a class="btn btn-primary active" role="button" aria-disabled="true" href="{% url 'user:login' %}">Hesabiniz Varsa Giris Yapmak Icin Tiklayin</a>
+
+    </div>
+  </div>
+
+
+{% endblock container %}

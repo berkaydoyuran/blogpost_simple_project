@@ -1,0 +1,28 @@
+{% extends 'base/main.html' %}
+
+{% block container %}
+
+<div class="row">
+    {% for post in posts %}
+    <div class="col-6">
+      
+      <div class="card">
+        <div class="card-body" style="width: 25rem;">
+          {% if item.picture %}
+          <img class="img-fluid rounded" src="{{item.picture.url}}" alt="yok">
+         {% endif %}
+          <a href="{% url 'post:post_detail' id=post.id %}">
+                <span><h5  class="card-item" >{{ post.title }}</h5></span>
+          </a>
+          <p class="card-text">{{ post.content|truncatewords:10 }}</p>
+          
+        </div>
+      </div>
+      <hr>
+      
+     
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock container %}

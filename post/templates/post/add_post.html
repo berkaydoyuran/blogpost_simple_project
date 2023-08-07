@@ -1,0 +1,19 @@
+{% extends 'base/main.html' %}
+{% block container %}
+
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Post Oluştur</h3>
+        <hr>
+        <form method = "post" enctype="multipart/form-data" >
+            {% csrf_token %}
+            
+            {{form.as_p}}
+            <br>
+            <button type = "submit" class = "btn btn-danger">Post Ekle</button>
+        </form>
+    </div>
+  </div>
+
+{% endblock container %}

@@ -1,0 +1,37 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary my-3">
+ 
+
+    <div class="container justify-content-center">
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent"> 
+
+            <ol class="nav nav-pills nav-fill">
+                <ol class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Ana Sayfa</a>
+                </ol>
+                <ol class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'post:myposts_view' %}">Postlarım</a>
+                </ol>
+                <ol class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'post:add_post' %}">Post Ekle</a>
+                </ol>
+                
+                {% if request.user.is_authenticated %}
+                <ol class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#" >Çıkış Yap</a>
+                
+                {% else %}
+                <ol class="nav-item">
+                  <a class="nav-link" aria-current="" href="#" >Giris Yap</a>
+                {% endif %}
+                </ol>
+                
+            </ol>
+
+
+        </div>
+       
+    </div>
+    
+</nav>
