@@ -51,6 +51,13 @@ def post_detail(request  , id):
     )
     return render(request, 'post/post_detail.html' , context)
 
+def read_only(request  , id):
+    item = get_object_or_404(Post , pk = id )
+    context = dict(
+        item = item
+    )
+    return render(request, 'post/read_only.html' , context)
+
 @login_required(login_url="/user/login")
 def post_duzenle(request, id):
 

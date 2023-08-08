@@ -12,12 +12,6 @@
   
         <p class="card-text">{{ item.content }}</p>
        
-  
-        
-        <a href="{% url 'post:post_duzenle' id=item.id %}" class="btn btn-primary my-3">Duzenle</a>
-        <a href="{% url 'post:silme' id=item.id %}" class="btn btn-primary my-3">Sil</a>
-        <a href="/" class="btn btn-primary my-3">Geri Don</a> 
-  
         <ul class="list-unstyled">
         Oluşturulma Tarihi : {{ item.created_at }}
       </ul>

@@ -4,19 +4,12 @@
 {% include 'base/head.html' %}
 
 <body>
-    
+
     {% block navbar %}
     {% include 'base/nav.html' %}
     {% endblock navbar %}
 
-    
-    <div class= "container">
-        {% block container %}
-        {% endblock container %}
-    </div>
-    {% block title %}
-    {% endblock title %}
-    
+
     {% if messages %}
                 
                     {% for message in messages %}
@@ -31,6 +24,18 @@
                     {% endfor %}
                 
                 {% endif %}
+    
+    
+   
+    
+    <div class= "container">
+        {% block container %}
+        {% endblock container %}
+    </div>
+    {% block title %}
+    {% endblock title %}
+    
+    
 
     {% include 'base/footer.html' %}
 </body>

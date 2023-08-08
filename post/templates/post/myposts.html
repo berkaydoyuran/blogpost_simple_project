@@ -1,28 +1,39 @@
 {% extends 'base/main.html' %}
-
+{% load static %}
 {% block container %}
-
-<div class="row">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<h1>Postlarım</h1>
+<div class="section_our_solution">
+  <div class="row"> 
     {% for post in posts %}
-    <div class="col-6">
-      
-      <div class="card">
-        <div class="card-body" style="width: 25rem;">
-          {% if item.picture %}
-          <img class="img-fluid rounded" src="{{item.picture.url}}" alt="yok">
-         {% endif %}
-          <a href="{% url 'post:post_detail' id=post.id %}">
-                <span><h5  class="card-item" >{{ post.title }}</h5></span>
-          </a>
-          <p class="card-text">{{ post.content|truncatewords:10 }}</p>
-          
+    <div class="col-4" >
+        
+        <div class="solution_cards_box"  >
+         
+          <div class="solution_card" style="width: 25rem; height: 25rem;">
+            
+            {% if post.picture %}
+            <img class="fit" src="{{post.picture.url}}" alt="yok" >
+            {% endif %}
+            <div class="solu_title">
+              <h3>{{ post.title }}</h3>
+            </div>
+            <div class="solu_description">
+              <p>
+                {{ post.content|truncatewords:10 }}
+              </p>
+              <a href="{% url 'post:post_detail' id=post.id %}"><button type="button" class="read_more_btn">Devamı</button></a>
+              
+            </div>
+          </div>
+         
         </div>
+        
       </div>
-      <hr>
-      
-     
-    </div>
     {% endfor %}
+  </div>
 </div>
+
+
 
 {% endblock container %}
