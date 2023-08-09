@@ -15,7 +15,7 @@ class RegisterForm(forms.Form):
         confirm = self.cleaned_data.get('confirm')
 
         if password and confirm and password != confirm:
-            raise forms.ValidationError('aynisini gir amk')
+            raise forms.ValidationError('Aynı parolayı gir lütfen')
         
         values = {
             'username' : username,

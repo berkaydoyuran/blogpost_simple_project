@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_protect
 def register(request):
     
     if request.user.is_authenticated :
-            messages.info(request, 'zaten girdin la')
+            messages.info(request, 'Zaten bir hesapla giriş yaptın!')
             return redirect('/')
     form = RegisterForm(request.POST or None)
 
@@ -24,7 +24,7 @@ def register(request):
 
         newUser.save()
         login(request, newUser)
-        messages.info(request, 'Aferin lan kaydoldun')
+        messages.info(request, 'Bravo kaydoldun!')
 
         return redirect('/')
     
@@ -38,7 +38,7 @@ def register(request):
 def loginUser(request):
 
     if request.user.is_authenticated :
-            messages.info(request, 'zaten girdin la')
+            messages.info(request, 'Zaten girdin')
             return redirect('/')
     form = LoginForm(request.POST or None)
 
@@ -71,5 +71,5 @@ def loginUser(request):
 @csrf_protect
 def logoutUser(request):
     logout(request)
-    messages.success(request,"gittin ha")
+    messages.success(request,"Çıkış Yapıldı")
     return redirect('/')

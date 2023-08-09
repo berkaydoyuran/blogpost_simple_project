@@ -36,7 +36,7 @@ def add_post(request):
         post.user = request.user
         post.save()
 
-        messages.success(request, 'Aferin laaaan')
+        messages.success(request, 'Bravo Post Ekledin!')
         return redirect('/')
     context = {
         'form': form
@@ -69,7 +69,7 @@ def post_duzenle(request, id):
         post.user = request.user
         post.save()
 
-        messages.success(request, 'Aferin laaaan duzenledin')
+        messages.success(request, 'Bravo Postunu Düzenledin!')
         return redirect('user:login')
 
     context = dict(
