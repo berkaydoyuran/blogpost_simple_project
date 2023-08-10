@@ -36,7 +36,7 @@ def register(request):
         'form' : form
     }
     
-    return render(request, 'arayuz/register.html', context)
+    return render(request, 'interface/register.html', context)
 
 @csrf_protect
 def login_view(request):
@@ -57,13 +57,13 @@ def login_view(request):
         user = authenticate(username = username,password = password)
         if user is None:
             messages.info(request,'Kullanici ismi veya parola yanlis')
-            return render(request, 'arayuz/login.html',context)
+            return render(request, 'interface/login.html',context)
         
         messages.success(request, 'Aferin giris yaptin')
         login(request, user)
         return redirect('/')
        
-    return render(request, 'arayuz/login.html', context)
+    return render(request, 'interface/login.html', context)
     
     
 @csrf_protect
