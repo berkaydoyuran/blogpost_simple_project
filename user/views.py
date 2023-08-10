@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect
-from .forms import RegisterForm , LoginForm
 from django.contrib import messages
 from django.contrib.auth import login , authenticate , logout
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
-
+from .forms import RegisterForm , LoginForm
 
 @csrf_protect
 def register(request):
@@ -19,14 +18,19 @@ def register(request):
         password = form.cleaned_data.get('password')
 
 
-        newUser = User( username = username)
+        newUser = User(username = username)
+        if User.objects.filter(username = username).first():
+            messages.info(request, "Bu kullanıcı adı daha önce alındı")
+            return redirect('user:register')
+    
         newUser.set_password(password)
 
         newUser.save()
         login(request, newUser)
         messages.info(request, 'Bravo kaydoldun!')
-
         return redirect('/')
+    
+    
     
     context = {
         'form' : form
@@ -35,7 +39,7 @@ def register(request):
     return render(request, 'arayuz/register.html', context)
 
 @csrf_protect
-def loginUser(request):
+def login_view(request):
 
     if request.user.is_authenticated :
             messages.info(request, 'Zaten girdin')
@@ -51,25 +55,19 @@ def loginUser(request):
         password = form.cleaned_data.get("password")
 
         user = authenticate(username = username,password = password)
-
-        
-
         if user is None:
-            messages.info(request,'La yok la')
+            messages.info(request,'Kullanici ismi veya parola yanlis')
             return render(request, 'arayuz/login.html',context)
         
-        
-        
-        messages.success(request, 'Aferin laaa')
+        messages.success(request, 'Aferin giris yaptin')
         login(request, user)
         return redirect('/')
-        
-        
+       
     return render(request, 'arayuz/login.html', context)
     
     
 @csrf_protect
-def logoutUser(request):
+def logout_view(request):
     logout(request)
     messages.success(request,"Çıkış Yapıldı")
     return redirect('/')

@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-from .views import register, loginUser , logoutUser
+from .views import register, login_view, logout_view
 
 app_name = 'user'
 
 urlpatterns =[
     path('register/', register, name='register'),
-    path('login/', loginUser, name='login'),
-    path('logout/', logoutUser, name='logout'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
 
 ]

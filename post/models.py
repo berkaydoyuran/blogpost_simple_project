@@ -1,9 +1,7 @@
-from django.db import models
-from autoslug import AutoSlugField
-from django.urls import reverse
-from slugify import slugify
 from django.contrib.auth.models import User
+from django.db import models
 from django.urls import reverse
+
 
 
 class Post(models.Model):
@@ -14,14 +12,14 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
 
-    def deleteds(self):
+    def delete_from_page(self):
 
-        self.is_deleted = True
+        self.is_deleted = not self.is_deleted
         self.save()
-
 
     def __str__(self):
         return self.title
+    
     def get_absolute_url(self):
     
       return reverse("post_detail", kwargs={ "id" : self.pk } )

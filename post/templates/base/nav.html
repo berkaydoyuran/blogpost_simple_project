@@ -19,7 +19,7 @@
                 
                 {% if request.user.is_authenticated %}
                 <ol class="nav-item">
-                  <a class="nav-link active" aria-current="" href="{% url 'user:logout' %}" >Çıkış Yap</a>
+                  <a class="nav-link" aria-current="" href="{% url 'user:logout' %}" >Çıkış Yap</a>
                 
                 {% else %}
                 <ol class="nav-item">
